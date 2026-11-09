@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>AirSense | Air Quality Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">A</span><span>AirSense</span></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#"><span>◫</span> Overview</a>
+      <a class="nav" href="#trends"><span>⌁</span> Pollution trends</a>
+      <a class="nav" href="#insights"><span>✳</span> Health insights</a>
+      <div class="sidebar-bottom"><div class="live-dot"></div><span>Live data connection</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div><div class="eyebrow">ENVIRONMENTAL INTELLIGENCE</div><h1>Air quality overview</h1><p class="muted">Monitor pollution. Understand patterns. Plan ahead.</p></div>
+        <div class="top-actions"><span class="updated" id="updated">Connecting…</span><select id="city"><option>Bengaluru</option><option>Delhi</option><option>Mumbai</option><option>Chennai</option><option>Hyderabad</option><option>Kolkata</option><option>Pune</option></select><button id="refresh">↻ Refresh</button></div>
+      </header>
+      <section class="hero">
+        <div><div class="eyebrow light">CURRENT AIR QUALITY · <span id="heroCity">BENGALURU</span></div><div class="hero-row"><div><div class="aqi-number" id="aqi">--</div><div class="aqi-caption">Estimated India AQI</div></div><div class="status-pill" id="category">Loading</div></div><p id="advice" class="hero-advice">Fetching the latest available air-quality data…</p></div>
+        <div class="hero-art"><div class="orbit o1"></div><div class="orbit o2"></div><div class="orb">AIR<br>QUALITY</div></div>
+      </section>
+      <section class="metrics">
+        <article class="metric"><div class="metric-head"><span>PM2.5</span><span class="metric-icon">◉</span></div><strong id="pm25">--</strong><small>µg/m³ · Fine particles</small></article>
+        <article class="metric"><div class="metric-head"><span>PM10</span><span class="metric-icon">◌</span></div><strong id="pm10">--</strong><small>µg/m³ · Coarse particles</small></article>
+        <article class="metric"><div class="metric-head"><span>Nitrogen dioxide</span><span class="metric-icon">⌁</span></div><strong id="no2">--</strong><small>µg/m³ · NO₂</small></article>
+        <article class="metric"><div class="metric-head"><span>Ozone</span><span class="metric-icon">✧</span></div><strong id="o3">--</strong><small>µg/m³ · O₃</small></article>
+      </section>
+      <section class="grid-two" id="trends">
+        <article class="panel chart-panel"><div class="panel-title"><div><h2>24-hour pollution trend</h2><p class="muted">Hourly particulate matter concentrations</p></div><span class="tag">PM2.5 / PM10</span></div><canvas id="trendChart" height="125"></canvas></article>
+        <article class="panel forecast-panel"><div class="panel-title"><div><h2>ML prediction</h2><p class="muted">Next-hour PM2.5 estimate</p></div><span class="tag purple">RANDOM FOREST</span></div><div class="prediction" id="prediction">--<small>µg/m³</small></div><div id="modelStatus" class="model-status">Model status loading</div><p class="note">This is an experimental one-hour-ahead estimate, not an official AQI forecast.</p></article>
+      </section>
+      <section class="grid-two" id="insights">
+        <article class="panel"><div class="panel-title"><div><h2>What this means</h2><p class="muted">General guidance based on estimated AQI</p></div></div><div class="insight" id="healthInsight">Loading air-quality guidance…</div></article>
+        <article class="panel"><div class="panel-title"><div><h2>About this data</h2><p class="muted">Transparency and data source</p></div></div><p class="source-copy">Air-quality readings and hourly series are supplied by Open-Meteo using CAMS atmospheric composition model data. The dashboard estimates an India-style AQI from PM2.5 and PM10 only; it is not an official CPCB AQI reading.</p><a class="source-link" href="https://open-meteo.com/en/docs/air-quality-api" target="_blank" rel="noreferrer">View data source ↗</a></article>
+      </section>
+      <footer>AirSense · Academic project prototype · Not a substitute for official public-health or CPCB information.</footer>
+    </main>
+  </div>
+  <div id="error" class="toast hidden"></div>
+  <script src="/static/app.js"></script>
+</body></html>
